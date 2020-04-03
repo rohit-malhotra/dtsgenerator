@@ -11,6 +11,7 @@
     "clean": "rimraf dist/ build/ {src,test}/**/*.{js,js.map}",
     "build": "tsc -p ./tsconfig-build.json",
     "prepublishOnly": "npm run build",
+    "install": "npm run build",
     "lint": "tslint --project ./tsconfig.json",
     "precompile": "npm run lint",
     "compile": "tsc -p .",
