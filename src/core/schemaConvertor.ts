@@ -68,7 +68,7 @@ export default class SchemaConvertor {
     public startNest(name: string): void {
         const processor = this.processor;
         if (processor.indentLevel === 0) {
-            processor.output('export ');
+            // processor.output('export ');
         }
         processor.output('interface ').outputType(name, true).outputLine(' {');
         processor.increaseIndent();
@@ -91,9 +91,9 @@ export default class SchemaConvertor {
     public startInterfaceNest(id: SchemaId): void {
         const processor = this.processor;
         if (processor.indentLevel === 0 && (this.ns == null || this.ns.length > 0)) {
-            processor.output('export ');
+            // processor.output('export ');
         } else {
-            processor.output('export ');
+            // processor.output('export ');
         }
         const name = this.getLastTypeName(id);
         processor.output('interface ').outputType(name).output(' ');
@@ -109,7 +109,7 @@ export default class SchemaConvertor {
         if (processor.indentLevel === 0 && (this.ns == null || this.ns.length > 0)) {
             processor.output('declare ');
         } else {
-            processor.output('export ');
+            // processor.output('export ');
         }
         const name = this.getLastTypeName(id);
         processor.output('type ').outputType(name).output(' = ');
