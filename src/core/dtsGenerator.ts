@@ -46,7 +46,7 @@ export default class DtsGenerator {
                 } else {
                     const requestRef = value.Post.Parameters.Body[typeMarker].content.$ref.split(['/']).slice(-1)[0];
                     const responseRef = value.Post.Responses[200][typeMarker].content.$ref.split(['/']).slice(-1)[0];
-                    this.convertor.addFunctionDefinition(key, capitalizeFirstLetter(requestRef),
+                    this.convertor.addFunctionDefinition(lowerFirstCase(key), capitalizeFirstLetter(requestRef),
                         capitalizeFirstLetter(responseRef));
                 }
             }
@@ -54,6 +54,10 @@ export default class DtsGenerator {
 
         function capitalizeFirstLetter(str: string) {
             return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function lowerFirstCase(str: string) {
+            return str.charAt(0).toLowerCase() + str.slice(1);
         }
     }
 
