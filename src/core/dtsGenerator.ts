@@ -44,11 +44,16 @@ export default class DtsGenerator {
                     this.walk(value, clientName);
                     this.convertor.endNest();
                 } else {
-                    this.convertor.addFunctionDefinition(key,
-                        value.Post.Parameters.Body[typeMarker].content.$ref.split(['/']).slice(-1)[0],
-                        value.Post.Responses[200][typeMarker].content.$ref.split(['/']).slice(-1)[0])
+                    const requestRef = value.Post.Parameters.Body[typeMarker].content.$ref.split(['/']).slice(-1)[0];
+                    const responseRef = value.Post.Responses[200][typeMarker].content.$ref.split(['/']).slice(-1)[0];
+                    this.convertor.addFunctionDefinition(key, capitalizeFirstLetter(requestRef),
+                        capitalizeFirstLetter(responseRef));
                 }
             }
+        }
+
+        function capitalizeFirstLetter(str: string) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
         }
     }
 
